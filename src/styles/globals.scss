@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply h-full bg-white;
+  }
+
+  body {
+    @apply flex flex-col;
+  }
+}
+
+@layer components {
+  .text-logo-gradient {
+    background: linear-gradient(
+      187deg,
+      #fff 5.23%,
+      rgba(255, 255, 255, 0.33) 125.54%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .shadow-in-mails {
+    box-shadow: 0px 7.137px 24.267px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  .border-agent-collaboration {
+    border-bottom: 1px solid var(--Light-Red, rgba(61, 60, 59, 0.5));
+  }
+
+  .shadow-dropdown {
+    box-shadow: 5px 5px 100px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-collaborate-button {
+    box-shadow: 0px 1px 2px 0px rgba(38, 110, 255, 0.05);
+  }
+
+  .shadow-customer {
+    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1);
+  }
+
+  .bg-username {
+    background: linear-gradient(
+        0deg,
+        rgba(141, 55, 199, 0.3) 0%,
+        rgba(141, 55, 199, 0.3) 100%
+      ),
+      rgba(141, 55, 199, 0.3);
+  }
+
+  .shadow-chat-open {
+    box-shadow: 0px 2px 5px 0px rgba(153, 153, 153, 0.11);
+  }
+
+  .bg-agent-gradient {
+    background: linear-gradient(0deg, #e0ecfc 0%, #e0ecfc 100%), #e0ecfc;
+  }
+}
+
+@layer utilities {
+  [disabled] {
+    @apply cursor-not-allowed;
+  }
+
+  .shadow-template-copy {
+    box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  }
+}
