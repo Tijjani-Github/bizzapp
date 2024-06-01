@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { montserrat, manrope, mansalva, inter, roboto } from "@/fonts";
 import "../styles/globals.scss";
+import { Providers } from "./provider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Bizapp Live Chat",
@@ -14,11 +16,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${montserrat.variable} ${manrope.variable} ${mansalva.variable} ${roboto.variable} ${inter.variable}`}
-      >
-        {children}
-      </body>
+      <Providers>
+        <body
+          className={`${montserrat.variable} ${manrope.variable} ${mansalva.variable} ${roboto.variable} ${inter.variable}`}
+        >
+          {children}
+          <Toaster />
+        </body>
+      </Providers>
     </html>
   );
 }
