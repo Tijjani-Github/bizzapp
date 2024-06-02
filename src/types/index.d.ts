@@ -25,6 +25,7 @@ interface Account {
   role: UserRole;
   department: string;
   image?: string;
+  isactive?: boolean;
 }
 
 export { SidebarProps, SidebarFooterProps, Account };

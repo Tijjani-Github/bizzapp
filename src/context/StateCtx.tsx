@@ -18,8 +18,8 @@ interface StateContextProps {
   setSwipeIndicator: React.Dispatch<React.SetStateAction<boolean>>;
   openSearchBox: boolean;
   setOpenSearchBox: React.Dispatch<React.SetStateAction<boolean>>;
-  openProfile: boolean;
-  setOpenProfile: React.Dispatch<React.SetStateAction<boolean>>;
+  CreateNewAgent: boolean;
+  setCreateNewAgent: React.Dispatch<React.SetStateAction<boolean>>;
   currentPath: string;
   selectedAccountFilter: string;
   setSelectedAccountFilter: React.Dispatch<React.SetStateAction<string>>;
@@ -36,7 +36,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [handleSwipe, setHandleSwipe] = React.useState<number | null>(null);
   const [openSidebar, setOpenSidebar] = React.useState(false);
   const [openSearchBox, setOpenSearchBox] = React.useState(false);
-  const [openProfile, setOpenProfile] = React.useState(false);
+  const [CreateNewAgent, setCreateNewAgent] = React.useState(false);
   const [openAdminSidebar, setOpenAdminSidebar] = React.useState(false);
   const [openSupervisorSidebar, setOpenSupervisorSidebar] =
     React.useState(false);
@@ -46,7 +46,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     React.useState("all");
   const [accountSearchTerm, setAccountSearchTerm] = React.useState("");
 
-  const isAnyModalOpen = OpenCreateAccount || openSearchBox || openProfile;
+  const isAnyModalOpen = OpenCreateAccount || openSearchBox || CreateNewAgent;
 
   const anyMobileSidebarOpen =
     showMobileMenu || openSidebar || openAdminSidebar || openSupervisorSidebar;
@@ -113,7 +113,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
         setShowMobileMenu(false);
         setOpenSidebar(false);
         setOpenSearchBox(false);
-        setOpenProfile(false);
+        setCreateNewAgent(false);
         setOpenAdminSidebar(false);
         setOpenSupervisorSidebar(false);
       }
@@ -150,8 +150,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setOpenSidebar,
       openSearchBox,
       setOpenSearchBox,
-      openProfile,
-      setOpenProfile,
+      CreateNewAgent,
+      setCreateNewAgent,
       openAdminSidebar,
       setOpenAdminSidebar,
       openSupervisorSidebar,
@@ -174,8 +174,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setSwipeIndicator,
       openSearchBox,
       setOpenSearchBox,
-      openProfile,
-      setOpenProfile,
+      CreateNewAgent,
+      setCreateNewAgent,
       openAdminSidebar,
       setOpenAdminSidebar,
       openSupervisorSidebar,

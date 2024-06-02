@@ -28,4 +28,26 @@ const getallaccount = async () => {
   }
 };
 
-export { getallaccount };
+const createnewagent = async (values: any) => {
+  const { refreshToken } = await getrefreshtoken();
+  const config = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
+
+  try {
+    const res = await $Http.post("/account/auth/register", values, config);
+    return {
+      status: res.status,
+      accounts: res.data.accounts,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
+
+export { getallaccount, createnewagent };

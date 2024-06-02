@@ -137,7 +137,8 @@ const getrefreshtoken = async () => {
     const expInMilliseconds = decoded.exp * 1000;
     const expirationDate = new Date(expInMilliseconds);
 
-    const oneHourFromNow = new Date(Date.now() + 3600000);
+    const oneHourFromNow = new Date(Date.now() - 3600000);
+
     if (expirationDate > oneHourFromNow) {
       return {
         status: 200,

@@ -21,18 +21,12 @@ import { Account } from "@/types";
 import { cn } from "@/utils";
 
 const AgentTable = () => {
-  const {
-    setAccountSearchTerm,
-    selectedAccountFilter,
-    accountSearchTerm,
-    setSelectedAccountFilter,
-  } = useStateCtx();
+  const { selectedAccountFilter, accountSearchTerm } = useStateCtx();
   const [accounts, setAccounts] = React.useState<Account[]>([]);
   const [filteredAccounts, setFilteredAccounts] = React.useState<Account[]>([]);
   const [error, setError] = React.useState<string | null>(null);
   const [selectedaccount, setSelectedAccount] = React.useState("");
   const [selected, setSelected] = React.useState("");
-  console.log(accountSearchTerm);
 
   React.useEffect(() => {
     const fetchAccounts = async () => {
@@ -45,7 +39,7 @@ const AgentTable = () => {
     };
 
     fetchAccounts();
-  }, []);
+  }, [accounts, accountSearchTerm, selectedAccountFilter]);
 
   React.useEffect(() => {
     const filtered = accounts.filter((account) => {
