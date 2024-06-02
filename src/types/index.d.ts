@@ -12,4 +12,19 @@ type SidebarFooterProps = {
   link: "open-sidebar" | "/admin/settings" | "logout";
 };
 
-export { SidebarProps, SidebarFooterProps };
+type UserRole = "admin" | "supervisor" | "agent";
+
+interface Account {
+  id: string;
+  fullName: string;
+  gender: string;
+  username: string;
+  location: string;
+  phone: string;
+  email: string;
+  role: UserRole;
+  department: string;
+  image?: string;
+}
+
+export { SidebarProps, SidebarFooterProps, Account };

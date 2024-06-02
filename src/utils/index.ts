@@ -18,9 +18,7 @@ export function findMostSimilarPathname(url: string, params: Params) {
   return modifiedParts.join("/");
 }
 
-export const baseurl = `${process.env.NEXT_PUBLIC_BASEURL}/api/account`;
-
-
+export const baseurl = `${process.env.NEXT_PUBLIC_BASEURL}/api`;
 
 export function maskEmail(email: string): string {
   const [localPart, domain] = email.split("@");

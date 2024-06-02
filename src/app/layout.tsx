@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <Providers>
         <body
-          className={`${montserrat.variable} ${manrope.variable} ${mansalva.variable} ${roboto.variable} ${inter.variable}`}
+          className={`${montserrat.variable} ${manrope.className} ${mansalva.variable} ${roboto.variable} ${inter.variable}`}
         >
           {children}
           <Toaster />

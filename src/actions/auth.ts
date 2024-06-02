@@ -28,7 +28,7 @@ const login = async (values: z.infer<typeof LoginSchema>) => {
   const loginvalues = { identifier, password };
 
   try {
-    const res = await $Http.post("/auth/login", loginvalues);
+    const res = await $Http.post("/account/auth/login", loginvalues);
 
     cookie.set("access_token", res.data.refreshToken, {
       maxAge: 60 * 60 * 24,
@@ -90,7 +90,7 @@ const register = async (values: z.infer<typeof RegisterSchema>) => {
   };
 
   try {
-    const res = await $Http.post("/auth/register", userdata);
+    const res = await $Http.post("/account/auth/register", userdata);
 
     return {
       status: res.status,
@@ -109,7 +109,7 @@ const getrefreshtoken = async () => {
   const cookie = cookies();
   const refresh = cookie.get("access_token")?.value;
 
-  if (refresh) {
+  if (!refresh) {
     return {
       status: 401,
       message: "No refresh token available",
@@ -126,6 +126,7 @@ const getrefreshtoken = async () => {
 
   try {
     const decoded: DecodedToken | null = jwtDecode<DecodedToken>(refresh!);
+
     if (!decoded) {
       return {
         status: 401,
@@ -136,8 +137,6 @@ const getrefreshtoken = async () => {
     const expInMilliseconds = decoded.exp * 1000;
     const expirationDate = new Date(expInMilliseconds);
 
-    console.log(expirationDate);
-
     const oneHourFromNow = new Date(Date.now() + 3600000);
     if (expirationDate > oneHourFromNow) {
       return {
@@ -146,7 +145,7 @@ const getrefreshtoken = async () => {
       };
     }
 
-    const res = await $Http.get("/auth/refresh-token", config);
+    const res = await $Http.get("/account/auth/refresh-token", config);
 
     cookie.set("access_token", res.data.refreshToken, {
       maxAge: 60 * 60 * 24,

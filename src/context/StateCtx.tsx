@@ -12,8 +12,8 @@ interface StateContextProps {
   setOpenAdminSidebar: React.Dispatch<React.SetStateAction<boolean>>;
   openSupervisorSidebar: boolean;
   setOpenSupervisorSidebar: React.Dispatch<React.SetStateAction<boolean>>;
-  ShowOtp: boolean;
-  setShowOtp: React.Dispatch<React.SetStateAction<boolean>>;
+  OpenCreateAccount: boolean;
+  setOpenCreateAccount: React.Dispatch<React.SetStateAction<boolean>>;
   swipeIndicator: boolean;
   setSwipeIndicator: React.Dispatch<React.SetStateAction<boolean>>;
   openSearchBox: boolean;
@@ -21,13 +21,17 @@ interface StateContextProps {
   openProfile: boolean;
   setOpenProfile: React.Dispatch<React.SetStateAction<boolean>>;
   currentPath: string;
+  selectedAccountFilter: string;
+  setSelectedAccountFilter: React.Dispatch<React.SetStateAction<string>>;
+  accountSearchTerm: string;
+  setAccountSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const StateContext = createContext({} as StateContextProps);
 
 const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
-  const [ShowOtp, setShowOtp] = React.useState(false);
+  const [OpenCreateAccount, setOpenCreateAccount] = React.useState(false);
   const [swipeIndicator, setSwipeIndicator] = React.useState(false);
   const [handleSwipe, setHandleSwipe] = React.useState<number | null>(null);
   const [openSidebar, setOpenSidebar] = React.useState(false);
@@ -38,8 +42,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     React.useState(false);
   const [currentPath, setCurrentPath] = React.useState("");
   const pathname = usePathname();
+  const [selectedAccountFilter, setSelectedAccountFilter] =
+    React.useState("all");
+  const [accountSearchTerm, setAccountSearchTerm] = React.useState("");
 
-  const isAnyModalOpen = ShowOtp || openSearchBox || openProfile;
+  const isAnyModalOpen = OpenCreateAccount || openSearchBox || openProfile;
 
   const anyMobileSidebarOpen =
     showMobileMenu || openSidebar || openAdminSidebar || openSupervisorSidebar;
@@ -126,12 +133,17 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (selectedAccountFilter === "") return;
+
+    localStorage.setItem("project-filter", selectedAccountFilter);
+  }, [selectedAccountFilter]);
   const value = useMemo(
     () => ({
       showMobileMenu,
       setShowMobileMenu,
-      ShowOtp,
-      setShowOtp,
+      OpenCreateAccount,
+      setOpenCreateAccount,
       swipeIndicator,
       setSwipeIndicator,
       openSidebar,
@@ -145,6 +157,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       openSupervisorSidebar,
       setOpenSupervisorSidebar,
       currentPath,
+      selectedAccountFilter,
+      setSelectedAccountFilter,
+      accountSearchTerm,
+      setAccountSearchTerm,
     }),
     [
       showMobileMenu,
@@ -152,8 +168,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setShowMobileMenu,
       openSidebar,
       setOpenSidebar,
-      ShowOtp,
-      setShowOtp,
+      OpenCreateAccount,
+      setOpenCreateAccount,
       swipeIndicator,
       setSwipeIndicator,
       openSearchBox,
@@ -164,6 +180,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setOpenAdminSidebar,
       openSupervisorSidebar,
       setOpenSupervisorSidebar,
+      selectedAccountFilter,
+      setSelectedAccountFilter,
+      accountSearchTerm,
+      setAccountSearchTerm,
     ]
   );
 
