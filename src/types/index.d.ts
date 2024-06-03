@@ -28,4 +28,18 @@ interface Account {
   isactive?: boolean;
 }
 
-export { SidebarProps, SidebarFooterProps, Account };
+interface Customer {
+  id: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  location: string;
+}
+
+interface Template {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+export { SidebarProps, SidebarFooterProps, Account, Customer, Template };

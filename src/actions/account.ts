@@ -50,4 +50,25 @@ const createnewagent = async (values: any) => {
   }
 };
 
-export { getallaccount, createnewagent };
+const getAgentbyid = async (agentid?: string) => {
+  const { refreshToken } = await getrefreshtoken();
+  const config = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
+  try {
+    const res = await $Http.get(`/account/account?id=${agentid}`, config);
+    return {
+      status: res.status,
+      agent: res.data.agent,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
+
+export { getallaccount, createnewagent, getAgentbyid };

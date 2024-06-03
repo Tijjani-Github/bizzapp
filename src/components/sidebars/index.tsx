@@ -5,21 +5,28 @@ import { SIDEBAR_FOO_LINKS, ADMIN_SIDEBAR_LINKS } from "@/lib";
 import { useState, useEffect, useRef } from "react";
 import { cn, shrinkString } from "@/utils";
 import Link from "next/link";
-
 import { useStateCtx } from "@/context/StateCtx";
 import { handleMouseEnter } from "@/utils/text-effect";
 import { ChevronLeftCircle } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const ADMIN_SIDEBAR = () => {
   const pathname = usePathname();
   const { openAdminSidebar, setOpenAdminSidebar } = useStateCtx();
   const [activeLink, setActiveLink] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     setActiveLink(pathname);
   }, [pathname]);
+
+  const handleSignout = async () => {
+    router.push("/");
+    // await signOut().then((data) => console.log(data));
+  };
 
   return (
     <>
@@ -165,6 +172,9 @@ const ADMIN_SIDEBAR = () => {
                 if (link.link === "open-sidebar") {
                   setOpenAdminSidebar(!openAdminSidebar);
                   return;
+                }
+                if (link.link === "logout") {
+                  handleSignout();
                 }
                 setActiveLink(link.link);
               }}

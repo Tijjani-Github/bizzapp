@@ -55,7 +55,7 @@ const ADMIN_SIDEBAR_LINKS: SidebarProps[] = [
     id: 5,
     label: "Messages",
     icon: Messages3,
-    link: "admin/messages",
+    link: "/admin/messages",
   },
   {
     id: 7,

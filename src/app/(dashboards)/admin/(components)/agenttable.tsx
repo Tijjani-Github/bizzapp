@@ -113,7 +113,7 @@ const AgentTable = () => {
               </TableCell>
               <TableCell className="text-center">
                 <Button asChild className="font-medium bg-blue-300">
-                  <Link href={`/agent/details?agentid=${account.id}`}>
+                  <Link href={`/admin/agent/details?agentid=${account.id}`}>
                     View
                   </Link>
                 </Button>

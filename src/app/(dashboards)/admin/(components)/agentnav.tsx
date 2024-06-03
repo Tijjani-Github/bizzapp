@@ -156,8 +156,6 @@ const NewUserProfileModal = () => {
   const [isLoading, setisLoading] = useState(false);
   const { toast } = useToast();
 
-  const values = { fullName, email, department, role };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -374,7 +372,7 @@ const NewUserProfileModal = () => {
                   </svg>
                 </>
               ) : (
-                "Login"
+                "Save Details"
               )}
             </Button>
           </form>
