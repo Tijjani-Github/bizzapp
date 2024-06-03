@@ -58,8 +58,8 @@ const LoginForm = () => {
             router.push("/admin/dashboard");
           }
         } else {
-          router.push("https://bizz-five.vercel.app/agent");
         }
+        router.push("https://bizz-five.vercel.app/agent");
       });
     });
   };
