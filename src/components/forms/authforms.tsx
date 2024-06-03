@@ -13,7 +13,7 @@ import {
 } from "../ui/form";
 import { cn } from "@/utils";
 import { Input } from "../ui/input";
-// import { LoginWithGoggle } from "@/modules/auth/social";
+import { usePathname } from "next/navigation";
 import { LoginSchema, RegisterSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -21,10 +21,9 @@ import { useToast } from "../ui/use-toast";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Eye, EyeSlash } from "iconsax-react";
-import { useStateCtx } from "@/context/StateCtx";
-// import { OtpModal } from "@/components/modals";
-// import { User } from "@/types";
-import { register, login } from "@/actions/auth";
+import { DEFAULT_ADMIN_LOGIN_REDIRECT } from "@/routes";
+
+import { login } from "@/actions/auth";
 import { useRouter } from "next/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 
@@ -42,6 +41,7 @@ const LoginForm = () => {
     },
   });
   const [isLoading, startTransition] = useTransition();
+  const pathname = usePathname();
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     startTransition(() => {
@@ -54,12 +54,9 @@ const LoginForm = () => {
           description: `${data.message}`,
         });
         if (data.status === 200) {
-          if (data.user.role === "admin") {
-            router.push("/admin/dashboard");
-          }
-        } else {
+          console.log(data.user.role);
+          router.push(`/${data.user.role}/dashboard`);
         }
-        router.push("https://bizz-five.vercel.app/agent");
       });
     });
   };

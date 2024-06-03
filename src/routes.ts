@@ -31,6 +31,12 @@ export const apiAuthPrefix = "/api/auth";
 export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
 
 /**
+ * The default redirect after login
+ * @type {string}
+ */
+export const DEFAULT_ADMIN_LOGIN_REDIRECT = "/admin/dashboard";
+
+/**
  * The default redirect after signup
  * @type {string}
  */

@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { getallaccount } from "@/actions/account";
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { useStateCtx } from "@/context/StateCtx";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -104,7 +103,7 @@ const AgentTable = () => {
                 />
                 {/* {account.fullName} */}
               </TableCell>
-              <TableCell>{account.department}</TableCell>
+              <TableCell>{account.department?.name}</TableCell>
               <TableCell>{account.role}</TableCell>
               <TableCell className="w-[75px]">
                 <div className="bg-green-200 w-[68px] text-center h-[30px] flex items-center justify-center  rounded-md">

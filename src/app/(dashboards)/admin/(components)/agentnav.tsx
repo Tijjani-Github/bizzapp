@@ -16,9 +16,10 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/utils";
 import { Add, SearchNormal } from "iconsax-react";
 import { ListFilter, X } from "lucide-react";
-import { createnewagent } from "@/actions/account";
+import { createnewagent, getAllDept } from "@/actions/account";
 import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
+import { Department } from "@/types";
 
 type SelectProps = {
   id?: number;
@@ -151,10 +152,20 @@ const NewUserProfileModal = () => {
   const { CreateNewAgent, setCreateNewAgent } = useStateCtx();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [department, setDepartment] = useState("");
+  const [departmentId, setDepartmentid] = useState("");
   const [role, setRole] = useState("agent");
   const [isLoading, setisLoading] = useState(false);
   const { toast } = useToast();
+  const [departments, setDepartments] = useState<Department[]>([]);
+
+  React.useEffect(() => {
+    const fetchDepartments = async () => {
+      const res = await getAllDept();
+      setDepartments(res.departments);
+    };
+
+    fetchDepartments();
+  }, [CreateNewAgent]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -162,7 +173,7 @@ const NewUserProfileModal = () => {
     setisLoading(true);
 
     try {
-      const values = { fullName, email, department, role };
+      const values = { fullName, email, departmentId, role };
 
       const result = await createnewagent(values);
 
@@ -173,7 +184,7 @@ const NewUserProfileModal = () => {
         });
         setFullName("");
         setEmail("");
-        setDepartment("");
+        setDepartmentid("");
         setRole("agent");
       } else {
         toast({
@@ -248,23 +259,34 @@ const NewUserProfileModal = () => {
                 className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
               />
             </div>
-            <div className="flex flex-col  gap-y-2 w-full">
-              <Label
-                htmlFor="agent-name"
-                className="text-sm sm:text-base font-medium text-black"
-              >
-                Deprartment
-              </Label>
-              <Input
-                type="text"
-                placeholder="department"
-                id="agent-name"
-                name="fullName"
-                value={department}
-                onChange={(e) => setDepartment(e.target.value)}
-                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
-              />
-            </div>
+            <Select
+              value={departmentId}
+              onValueChange={(value) => setDepartmentid(value)}
+            >
+              <SelectTrigger className="w-full select-none py-3 text-black">
+                <SelectValue
+                  placeholder={
+                    departments.find(
+                      (dept) => dept.id.toString() === departmentId
+                    )?.name || "Select a department"
+                  }
+                  className="text-center"
+                />
+              </SelectTrigger>
+              <SelectContent className="backdrop-blur-xl bg-white/80 z-[150]">
+                <SelectGroup>
+                  {departments.map((dept) => (
+                    <SelectItem
+                      key={dept.id}
+                      value={dept.id.toString()}
+                      className="hover:bg-[#becbd7] text-black text-center"
+                    >
+                      {dept.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <div className="flex flex-col  gap-y-2 w-full">
               <Label
                 htmlFor="agent-name"

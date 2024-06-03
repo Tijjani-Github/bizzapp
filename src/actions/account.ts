@@ -28,6 +28,51 @@ const getallaccount = async () => {
   }
 };
 
+const getAllColab = async () => {
+  const { refreshToken } = await getrefreshtoken();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
+
+  try {
+    const res = await $Http.get("/account/collaborations", config);
+    return {
+      status: res.status,
+      collab: res.data.colaborations,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
+const getAllDept = async () => {
+  const { refreshToken } = await getrefreshtoken();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
+
+  try {
+    const res = await $Http.get("/account/departments", config);
+    return {
+      status: res.status,
+      departments: res.data.departments,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
+
 const createnewagent = async (values: any) => {
   const { refreshToken } = await getrefreshtoken();
   const config = {
@@ -71,4 +116,4 @@ const getAgentbyid = async (agentid?: string) => {
   }
 };
 
-export { getallaccount, createnewagent, getAgentbyid };
+export { getallaccount, createnewagent, getAgentbyid, getAllColab, getAllDept };
