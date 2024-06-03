@@ -57,6 +57,8 @@ const LoginForm = () => {
           if (data.user.role === "admin") {
             router.push("/admin/dashboard");
           }
+        } else {
+          router.push("https://bizz-five.vercel.app/agent");
         }
       });
     });

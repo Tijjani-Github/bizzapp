@@ -228,8 +228,6 @@ const AgentProfile = ({ agentid }: { agentid?: string }) => {
     fetchAgentDetails();
   }, [agentid]);
 
-  console.log(agent);
-
   return (
     <>
       <section className="flex px-5 pt-16 pb-5 mt-1.5 w-full bg-white rounded-md max-md:mt-8">
@@ -272,14 +270,65 @@ const AgentProfile = ({ agentid }: { agentid?: string }) => {
             <span className="underline text-zinc-700">{agent?.email}</span>
           </p>
           <p className="mt-2 text-sm font-medium tracking-normal leading-5 text-center underline text-zinc-700 text-opacity-70">
-            Supervisor:{" "}
-            <span className="underline text-zinc-700">{}</span>
+            Supervisor: <span className="underline text-zinc-700">{}</span>
           </p>
           <hr className="shrink-0 mt-6 h-px border border-solid bg-zinc-700 bg-opacity-10 border-zinc-700 border-opacity-10" />
           <button className="justify-center self-center px-7 py-2 mt-6 text-base font-medium tracking-wide leading-7 text-black capitalize whitespace-nowrap bg-amber-400 rounded-md border border-black border-solid shadow-sm max-md:px-5">
             in-Message
           </button>
         </div>
+        <section className="flex flex-col ml-5 w-[70%] max-md:ml-0 max-md:w-full">
+          <header className="flex flex-col grow max-md:mt-6 max-md:max-w-full">
+            <div className="flex gap-5 justify-between items-start w-full font-medium max-md:flex-wrap max-md:max-w-full">
+              <div className="flex flex-col px-5 pt-2.5 mt-1.5 text-sm tracking-wide leading-6 text-center capitalize text-zinc-700 text-opacity-90">
+                <h2>Agent data</h2>
+                <hr className="shrink-0 mt-3.5 h-px border border-solid bg-zinc-700 bg-opacity-10 border-zinc-700 border-opacity-10" />
+              </div>
+              <div className="flex gap-2 justify-center px-5 py-2.5 text-base leading-6 text-gray-900 bg-amber-200 rounded-lg border border-yellow-400 border-solid shadow-sm">
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/73915c73e3399f7952ea6f9563484b4b28f26ac80c3d7990a3df0d7a8c6567f0?apiKey=af97e94b909e4cdbb531b36fb1b19598&"
+                  alt="User icon"
+                  className="shrink-0 w-6 aspect-square"
+                />
+                <span>User Active</span>
+                <img
+                  loading="lazy"
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/c303c3da322dc8541cd9b4bee9afbdb7da90a4d9fb01136ac7224e657375de48?apiKey=af97e94b909e4cdbb531b36fb1b19598&"
+                  alt="Active icon"
+                  className="shrink-0 my-auto aspect-square w-[18px]"
+                />
+              </div>
+            </div>
+            <nav className="flex gap-5 self-start px-2.5 py-4 mt-8 text-base font-semibold tracking-normal leading-6 text-zinc-700 text-opacity-50 max-md:flex-wrap">
+              <span>Closed cases</span>
+              <span className="text-zinc-700">Active cases</span>
+              <span>Collaborations</span>
+              <span>Escalation</span>
+            </nav>
+            <hr className="shrink-0 mt-1 h-px border border-solid bg-zinc-700 bg-opacity-20 border-zinc-700 border-opacity-20 max-md:max-w-full" />
+            <article className="flex z-10 flex-col px-6 leading-[150%] max-md:px-5 max-md:max-w-full">
+              <hr className="shrink-0 ml-24 h-px border border-solid bg-zinc-700 border-zinc-700 w-[120px] max-md:ml-2.5" />
+              <header className="flex gap-5 justify-between self-start mt-10 text-base font-semibold tracking-normal text-zinc-700 text-opacity-90 max-md:mt-10">
+                <span>Customer name</span>
+                <span>Issue</span>
+                <span>Department</span>
+              </header>
+              <CustomerCase
+                name="Tanimu Ali Salisu"
+                issue="Wallet"
+                department="Finance"
+                status="Active"
+              />
+              <CustomerCase
+                name="Tanimu Ali Salisu"
+                issue="Wallet"
+                department="Finance"
+                status="Active"
+              />
+            </article>
+          </header>
+        </section>
       </section>
     </>
   );
