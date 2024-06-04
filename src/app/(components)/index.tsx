@@ -6,6 +6,7 @@ import {
   createnewcustomers,
   gettemplates,
   createComplain,
+  getcomplainbyId,
 } from "@/actions/customer";
 import { Customer, Template } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -342,6 +343,8 @@ const CreateComplain = () => {
         setPatching(true);
       }
       localStorage.setItem("complain", response.complain);
+      const complain = await getcomplainbyId(response.complain.id);
+      setComplain(complain.complain);
       toast({
         title:
           response.status === 201

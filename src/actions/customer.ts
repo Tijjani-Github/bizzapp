@@ -79,6 +79,22 @@ const getAllCustomers = async () => {
   }
 };
 
+const getcomplainbyId = async (id: string) => {
+  try {
+    const res = await $Http.get(`/complains?id=${id}`);
+    return {
+      status: res.status,
+      complain: res.data.data,
+      message: res.data.message,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
+
 const getAllcomplains = async () => {
   const { refreshToken } = await getrefreshtoken();
 
@@ -108,4 +124,5 @@ export {
   createComplain,
   getAllCustomers,
   getAllcomplains,
+  getcomplainbyId,
 };
