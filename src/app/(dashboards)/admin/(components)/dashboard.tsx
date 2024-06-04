@@ -7,16 +7,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/utils";
 
-interface ProfileProps {
-  imgSrc: string;
-  altText: string;
-  role: string;
-  gender: string;
-  department: string;
-  email: string;
-  supervisor: string;
-}
-
 interface CustomerCaseProps {
   name?: string;
   issue?: string;
@@ -162,6 +152,7 @@ const AgentProfile = ({ agentid }: { agentid?: string }) => {
                 <>
                   {agent?.complain.map((comp) => (
                     <CustomerCase
+                      key={comp.id}
                       name={comp.complaint.fullName}
                       issue={comp.complain}
                       department={agent.department?.name}
@@ -179,6 +170,7 @@ const AgentProfile = ({ agentid }: { agentid?: string }) => {
                 <>
                   {agent?.complain.map((comp) => (
                     <CustomerCase
+                      key={comp.id}
                       name={comp.complaint.fullName}
                       issue={comp.complain}
                       department={agent.department?.name}
@@ -196,6 +188,7 @@ const AgentProfile = ({ agentid }: { agentid?: string }) => {
                 <>
                   {agent?.collaboratingCollaborations.map((comp) => (
                     <CustomerCase
+                      key={comp.id}
                       name={comp.colaborator.fullName}
                       issue={comp.complain.complain}
                       department={agent.department?.name}
@@ -209,7 +202,7 @@ const AgentProfile = ({ agentid }: { agentid?: string }) => {
                   )}
                 </>
               )}
-              {activetab === 3 && (
+              {activetab === 4 && (
                 <>
                   {agent?.collaboratingCollaborations.map((comp) => (
                     <CustomerCase
