@@ -365,15 +365,11 @@ const CreateComplain = () => {
           {templates?.map((template) => (
             <div
               key={template.id}
-              aria-disabled={openChat}
               className={cn(
                 "text-start w-full flex shadow-none items-start border-b border-blue-400 cursor-pointer",
                 openChat ? "cursor-default" : ""
               )}
               onClick={() => {
-                if (openChat) {
-                  return;
-                }
                 replace(
                   `${pathname}?templateId=${template.id}&customerId=${customer?.id}`
                 );
