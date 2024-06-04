@@ -21,7 +21,7 @@ export default function RootLayout({
         <body
           className={`${montserrat.variable} ${manrope.className} ${mansalva.variable} ${roboto.variable} ${inter.variable}`}
         >
-          {children}
+          {/* {children} */}
 
           <NewTemplateModal />
           <Toaster />
