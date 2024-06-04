@@ -1,7 +1,12 @@
 import React from "react";
+import { CustomerTable } from "./customtable";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <CustomerTable />
+    </>
+  );
 };
 
 export default page;

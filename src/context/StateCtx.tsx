@@ -46,7 +46,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     React.useState("all");
   const [accountSearchTerm, setAccountSearchTerm] = React.useState("");
 
-  const isAnyModalOpen = OpenCreateAccount || CreateNewCustomer || CreateNewAgent;
+  const isAnyModalOpen =
+    OpenCreateAccount || CreateNewCustomer || CreateNewAgent;
 
   const anyMobileSidebarOpen =
     showMobileMenu || openSidebar || openAdminSidebar || openSupervisorSidebar;
@@ -129,6 +130,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (pathname.startsWith("/")) {
       setCurrentPath(pathname.replace("/admin/", ""));
+      setCurrentPath(pathname.replace("/supervisor/", ""));
       return;
     }
   }, [pathname]);
