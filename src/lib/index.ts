@@ -65,6 +65,46 @@ const ADMIN_SIDEBAR_LINKS: SidebarProps[] = [
   },
 ];
 
+const SUPERVISORS_SIDEBAR_LINKS: SidebarProps[] = [
+  {
+    id: 1,
+    label: "Dashboard",
+    icon: Category,
+    link: "/supervisor/dashboard",
+  },
+
+  {
+    id: 2,
+    label: "Agent",
+    icon: BAAgents,
+    link: "/supervisor/agent",
+  },
+  {
+    id: 3,
+    label: "Customers",
+    icon: BACustomers,
+    link: "/supervisor/customers",
+  },
+  {
+    id: 4,
+    label: "Cases",
+    icon: BACases,
+    link: "/supervisor/cases",
+  },
+  {
+    id: 5,
+    label: "Messages",
+    icon: Messages3,
+    link: "/supervisor/messages",
+  },
+  {
+    id: 7,
+    label: "Templates",
+    icon: BATemplates,
+    link: "/supervisor/templates",
+  },
+];
+
 const SIDEBAR_FOO_LINKS: SidebarFooterProps[] = [
   {
     id: 1,
@@ -89,4 +129,9 @@ const SIDEBAR_FOO_LINKS: SidebarFooterProps[] = [
 
 const TYPESidebarLinks = ADMIN_SIDEBAR_LINKS.map((link) => link.link);
 
-export { SIDEBAR_FOO_LINKS, TYPESidebarLinks, ADMIN_SIDEBAR_LINKS };
+export {
+  SIDEBAR_FOO_LINKS,
+  TYPESidebarLinks,
+  ADMIN_SIDEBAR_LINKS,
+  SUPERVISORS_SIDEBAR_LINKS,
+};

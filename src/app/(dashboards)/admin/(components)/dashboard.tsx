@@ -213,6 +213,7 @@ const AgentProfile = ({ agentid }: { agentid?: string }) => {
                 <>
                   {agent?.collaboratingCollaborations.map((comp) => (
                     <CustomerCase
+                      key={comp.id}
                       name={comp.colaborator.fullName}
                       issue={comp.complain.complain}
                       department={agent.department?.name}

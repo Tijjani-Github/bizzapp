@@ -1,7 +1,12 @@
 import React from "react";
+import { SDashBoardPage } from "../components";
 
 const page = () => {
-  return <div>page</div>;
+  return (
+    <>
+      <SDashBoardPage />
+    </>
+  );
 };
 
 export default page;
