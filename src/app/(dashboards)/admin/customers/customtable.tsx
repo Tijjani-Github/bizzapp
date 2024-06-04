@@ -15,9 +15,11 @@ import { getAllCustomers } from "@/actions/customer";
 import { Customer } from "@/types";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const CustomerTable = () => {
   const [customers, setCustomers] = React.useState<Customer[]>([]);
+  const { data: session } = useSession();
 
   React.useEffect(() => {
     const fetchAccounts = async () => {
@@ -50,7 +52,10 @@ const CustomerTable = () => {
               <TableCell>{customer.location}</TableCell>
               <TableCell>
                 <Button asChild>
-                  <Link href={`/admin/customer/details?id=${customer.id}`}>
+                  <Link
+                    //   {/* @ts-ignore */}
+                    href={`/${session?.user?.role}/customer/details?id=${customer.id}`}
+                  >
                     View
                   </Link>
                 </Button>

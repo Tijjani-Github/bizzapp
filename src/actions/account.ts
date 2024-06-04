@@ -116,4 +116,33 @@ const getAgentbyid = async (agentid?: string) => {
   }
 };
 
-export { getallaccount, createnewagent, getAgentbyid, getAllColab, getAllDept };
+const acceptComplain = async (compId: string) => {
+  const { refreshToken } = await getrefreshtoken();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
+  try {
+    const res = await $Http.get(`/complains/accept?id=${compId}`, config);
+    return {
+      status: res.status,
+      agent: res.data.agent,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
+
+export {
+  getallaccount,
+  createnewagent,
+  getAgentbyid,
+  getAllColab,
+  getAllDept,
+  acceptComplain,
+};

@@ -70,7 +70,7 @@ interface Complain {
   session: string;
   createdAt: Date;
   updatedAt: Date;
-  status: string;
+  status: "pending" | "active" | "attending" | "closed";
   colaborations: Collaboration[];
   escalated?: boolean;
 }

@@ -45,6 +45,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedAccountFilter, setSelectedAccountFilter] =
     React.useState("all");
   const [accountSearchTerm, setAccountSearchTerm] = React.useState("");
+  const [isVerified, setIsVerifed] = React.useState(false);
 
   const isAnyModalOpen =
     OpenCreateAccount || CreateNewCustomer || CreateNewAgent;
@@ -71,6 +72,15 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setSwipeIndicator(false);
     }
   }, [openSidebar]);
+
+  useEffect(() => {
+    const NewAcc = localStorage.getItem("swiped");
+    if (NewAcc) {
+      setIsVerifed(false);
+      return;
+    }
+    setIsVerifed(true);
+  }, [isVerified]);
 
   useEffect(() => {
     if (!isMobileDevice() || !("ontouchstart" in window)) return;

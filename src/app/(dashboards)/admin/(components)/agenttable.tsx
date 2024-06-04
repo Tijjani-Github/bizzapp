@@ -18,6 +18,7 @@ import {
 import Link from "next/link";
 import { Account } from "@/types";
 import { cn } from "@/utils";
+import { useSession } from "next-auth/react";
 
 const AgentTable = () => {
   const { selectedAccountFilter, accountSearchTerm } = useStateCtx();
@@ -26,6 +27,7 @@ const AgentTable = () => {
   const [error, setError] = React.useState<string | null>(null);
   const [selectedaccount, setSelectedAccount] = React.useState("");
   const [selected, setSelected] = React.useState("");
+  const { data: session } = useSession();
 
   React.useEffect(() => {
     const fetchAccounts = async () => {
@@ -112,7 +114,10 @@ const AgentTable = () => {
               </TableCell>
               <TableCell className="text-center">
                 <Button asChild className="font-medium bg-blue-300">
-                  <Link href={`/admin/agent/details?agentid=${account.id}`}>
+                  <Link
+                    // @ts-ignore
+                    href={`/${session?.user?.role}/agent/details?agentid=${account.id}`}
+                  >
                     View
                   </Link>
                 </Button>

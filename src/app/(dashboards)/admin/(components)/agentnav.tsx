@@ -20,6 +20,7 @@ import { createnewagent, getAllDept } from "@/actions/account";
 import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@/components/ui/label";
 import { Department } from "@/types";
+import { useSession } from "next-auth/react";
 
 type SelectProps = {
   id?: number;
@@ -65,9 +66,16 @@ const AgentPageNav = () => {
     setSelectedAccountFilter,
     setCreateNewAgent,
   } = useStateCtx();
+  const { data: session } = useSession();
   return (
     <div className="w-full md:h-[56px] flex justify-between min-[450px]:gap-x-4 items-center flex-col md:flex-row gap-y-4 sm:pt-4 md:px-9 mt-5">
-      <div className="flex w-full max-w-1/3 relative items-center">
+      <div
+        className={cn(
+          "w-full max-w-1/3 relative items-center",
+          // @ts-ignore
+          session?.user?.role != "admin" ? "hidden" : " flex"
+        )}
+      >
         <Button
           type="button"
           onClick={() => setCreateNewAgent(true)}
@@ -77,7 +85,13 @@ const AgentPageNav = () => {
           Add New Agent
         </Button>
       </div>
-      <div className="flex w-full sm:max-w-1/2 justify-between gap-x-2 ">
+      <div
+        className={cn(
+          "flex w-full sm:max-w-1/2  gap-x-2",
+          // @ts-ignore
+          session?.user?.role != "admin" ? "justify-end" : "justify-between"
+        )}
+      >
         <div className="flex w-full max-w-1/3 relative items-center">
           <div className="flex items-center w-full relative">
             <Input

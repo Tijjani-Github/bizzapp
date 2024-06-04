@@ -92,9 +92,15 @@ const DashBoardPage = () => {
       complain.status === "pending" && complain.session === "active"
   );
 
+  const pendingComplains = complains.filter(
+    (complain) => complain.status === "pending"
+  );
+
   const activeAgents = accounts.filter((account: Account) => account.isactive);
 
-  const closedCase = complains.filter((complain: Complain) => complain.closed);
+  const closedComplains = complains.filter(
+    (complain) => complain.status === "closed"
+  );
 
   return (
     <section className="flex flex-col w-full items-center justify-center h-full overflow-x-hidden overflow-y-auto p-4">
@@ -137,11 +143,11 @@ const DashBoardPage = () => {
         <InfoCard total={accounts.length} tittle="Total Agents" />
         <InfoCard total={customers.length} tittle="Total Customers" />
         <InfoCard
-          total={activeComplains ? activeComplains.length : 0}
-          tittle="Pending Customers"
+          total={pendingComplains ? pendingComplains.length : 0}
+          tittle="Pending Complains"
         />
         <InfoCard
-          total={closedCase ? closedCase.length : 0}
+          total={closedComplains ? closedComplains.length : 0}
           tittle="Total Closed Cases"
         />
         <InfoCard
@@ -150,7 +156,7 @@ const DashBoardPage = () => {
         />
         <InfoCard total={activeAgents.length} tittle="Active Agents" />
 
-        {activeAgents ? (
+        {/* {activeAgents ? (
           <div className="flex w-[320px] flex-col">
             Active Agent
             {activeAgents.map((activeAgent) => (
@@ -169,7 +175,7 @@ const DashBoardPage = () => {
           <>
             <div>there are no active agents at the moment</div>
           </>
-        )}
+        )} */}
       </div>
       <div className="mt-5">Over Statistics</div>
       <DataGrpah />
@@ -184,9 +190,9 @@ const data = [
   { name: "yesterday", uv: 3000 },
   { name: "1/6/2024", uv: 2000 },
   { name: "30/5/2024" },
-//   { name: "Page E", uv: 1890 },
-//   { name: "Page F", uv: 2390 },
-//   { name: "Page G", uv: 3490 },
+  //   { name: "Page E", uv: 1890 },
+  //   { name: "Page F", uv: 2390 },
+  //   { name: "Page G", uv: 3490 },
 ];
 
 const DataGrpah = () => {
