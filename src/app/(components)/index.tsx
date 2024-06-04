@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DirectRight } from "iconsax-react";
+import { Complain } from "@/types";
 
 const NewCustomers = () => {
   const { CreateNewCustomer, setCreateNewCustomer } = useStateCtx();
@@ -296,6 +297,7 @@ const CreateComplain = () => {
   const templateId = searchParams.get("templateId");
   const customerId = searchParams.get("customerId");
   const [openChat, setOpenChat] = useState(false);
+  const [complain, setComplain] = React.useState<Complain | null>(null);
 
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
@@ -339,6 +341,7 @@ const CreateComplain = () => {
       if (response.status === 201) {
         setPatching(true);
       }
+      localStorage.setItem("complain", response.complain);
       toast({
         title:
           response.status === 201
@@ -351,6 +354,18 @@ const CreateComplain = () => {
       return;
     }
   };
+
+  useEffect(() => {
+    const complaininLocal = localStorage.getItem("complain");
+    if (complaininLocal) {
+      try {
+        const com: Complain = JSON.parse(complaininLocal);
+        setComplain(com);
+      } catch (error) {
+        console.error("Failed to parse complain from localStorage", error);
+      }
+    }
+  }, []);
 
   return (
     <div className="w-full flex items-center">
