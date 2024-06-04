@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChangePasswordModal } from "@/components/modal";
+import { ChangePasswordModal, NewTemplateModal } from "@/components/modal";
 import { montserrat, manrope, mansalva, inter, roboto } from "@/fonts";
 import "../styles/globals.scss";
 import { Providers } from "./provider";
@@ -23,6 +23,7 @@ export default function RootLayout({
         >
           {children}
           <ChangePasswordModal />
+          <NewTemplateModal />
           <Toaster />
         </body>
       </Providers>

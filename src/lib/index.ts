@@ -23,7 +23,15 @@ import {
   Coin1,
   Messages3,
 } from "iconsax-react";
-import { BAAgents, BACustomers, BACases, BATemplates } from "./icon";
+import {
+  BAAgents,
+  BACustomers,
+  BACases,
+  BATemplates,
+  BAPending,
+  BAResolved,
+  
+} from "./icon";
 
 const ADMIN_SIDEBAR_LINKS: SidebarProps[] = [
   {
@@ -105,6 +113,46 @@ const SUPERVISORS_SIDEBAR_LINKS: SidebarProps[] = [
   },
 ];
 
+const SIDEBAR_LINKS: SidebarProps[] = [
+  {
+    id: 1,
+    label: "Dashboard",
+    icon: Category,
+    link: "/agent/dashboard",
+  },
+
+  {
+    id: 2,
+    label: "Pending",
+    icon: BAPending,
+    link: "/agent/pending",
+  },
+  {
+    id: 3,
+    label: "Customers",
+    icon: BACustomers,
+    link: "/agent/customers",
+  },
+  {
+    id: 4,
+    label: "resolved",
+    icon: BAResolved,
+    link: "/agent/resolved",
+  },
+  {
+    id: 5,
+    label: "Templates",
+    icon: BATemplates,
+    link: "/agent/templates",
+  },
+  {
+    id: 6,
+    label: "Messages",
+    icon: Messages3,
+    link: "/agent/messages",
+  },
+];
+
 const SIDEBAR_FOO_LINKS: SidebarFooterProps[] = [
   {
     id: 1,
@@ -134,4 +182,5 @@ export {
   TYPESidebarLinks,
   ADMIN_SIDEBAR_LINKS,
   SUPERVISORS_SIDEBAR_LINKS,
+  SIDEBAR_LINKS,
 };

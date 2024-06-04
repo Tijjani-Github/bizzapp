@@ -25,8 +25,8 @@ interface StateContextProps {
   setSelectedAccountFilter: React.Dispatch<React.SetStateAction<string>>;
   accountSearchTerm: string;
   setAccountSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  isVerified: boolean;
-  setisVerified: React.Dispatch<React.SetStateAction<boolean>>;
+  NewTemplate: boolean;
+  setNewTemplate: React.Dispatch<React.SetStateAction<boolean>>;
   changePassword: boolean;
   setchangePassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -49,7 +49,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedAccountFilter, setSelectedAccountFilter] =
     React.useState("all");
   const [accountSearchTerm, setAccountSearchTerm] = React.useState("");
-  const [isVerified, setisVerified] = React.useState(false);
+  const [NewTemplate, setNewTemplate] = React.useState(false);
   const [changePassword, setchangePassword] = React.useState(false);
 
   const isAnyModalOpen =
@@ -81,13 +81,13 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const NewAcc = localStorage.getItem("Changed");
     if (NewAcc) {
-      setisVerified(false);
+      setchangePassword(false);
       return;
     }
-    setisVerified(true);
+
     localStorage.setItem("Changed", "true");
     setchangePassword(true);
-  }, [isVerified]);
+  }, [changePassword]);
 
   useEffect(() => {
     if (!isMobileDevice() || !("ontouchstart" in window)) return;
@@ -149,6 +149,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     if (pathname.startsWith("/")) {
       setCurrentPath(pathname.replace("/admin/", ""));
       setCurrentPath(pathname.replace("/supervisor/", ""));
+      setCurrentPath(pathname.replace("/agent/", ""));
       return;
     }
   }, [pathname]);
@@ -181,8 +182,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setSelectedAccountFilter,
       accountSearchTerm,
       setAccountSearchTerm,
-      isVerified,
-      setisVerified,
+      NewTemplate,
+      setNewTemplate,
       changePassword,
       setchangePassword,
     }),
@@ -208,8 +209,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setSelectedAccountFilter,
       accountSearchTerm,
       setAccountSearchTerm,
-      isVerified,
-      setisVerified,
+      NewTemplate,
+      setNewTemplate,
       changePassword,
       setchangePassword,
     ]

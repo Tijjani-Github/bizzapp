@@ -163,6 +163,28 @@ const ChangePassword = async (values: any) => {
     };
   }
 };
+
+const createNewTemplatea = async (values: any) => {
+  const { refreshToken } = await getrefreshtoken();
+  const config = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
+  try {
+    const res = await $Http.post(`/template`, values, config);
+    return {
+      status: res.status,
+      message: res.data.message,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
+
 export {
   getallaccount,
   createnewagent,
@@ -171,4 +193,5 @@ export {
   getAllDept,
   acceptComplain,
   ChangePassword,
+  createNewTemplatea,
 };
