@@ -53,7 +53,7 @@ const CustomerTable = () => {
               <TableCell>
                 <Button asChild>
                   <Link
-                    //   {/* @ts-ignore */}
+                    //  @ts-ignore
                     href={`/${session?.user?.role}/customer/details?id=${customer.id}`}
                   >
                     View
