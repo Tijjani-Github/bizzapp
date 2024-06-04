@@ -1,5 +1,6 @@
 import { SUPERVISORSIDEBAR } from "@/components/sidebars";
 import { AdminNav } from "@/components/navbars";
+import { ChangePasswordModal } from "@/components/modal";
 
 export default function UserLayout({
   children,
@@ -18,6 +19,7 @@ export default function UserLayout({
           {children}
         </section>
       </main>
+      <ChangePasswordModal />
 
       {/* <EditProfile /> */}
     </>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChangePasswordModal, NewTemplateModal } from "@/components/modal";
+import {  NewTemplateModal } from "@/components/modal";
 import { montserrat, manrope, mansalva, inter, roboto } from "@/fonts";
 import "../styles/globals.scss";
 import { Providers } from "./provider";
@@ -22,7 +22,7 @@ export default function RootLayout({
           className={`${montserrat.variable} ${manrope.className} ${mansalva.variable} ${roboto.variable} ${inter.variable}`}
         >
           {children}
-          <ChangePasswordModal />
+
           <NewTemplateModal />
           <Toaster />
         </body>
