@@ -5,7 +5,6 @@ import * as React from "react";
 import { useStateCtx } from "@/context/StateCtx";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/utils";
-import { NewTemplateModal } from "@/components/modal";
 import { shrinkString } from "@/utils";
 import { Template } from "@/types";
 import { gettemplates } from "@/actions/customer";
@@ -150,7 +149,6 @@ const TemplatePage = () => {
             <>
               <div className="items-center justify-center h-full flex w-full">
                 select a templeate
-
               </div>
             </>
           )}

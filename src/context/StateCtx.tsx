@@ -87,7 +87,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     localStorage.setItem("Changed", "true");
     setchangePassword(true);
-  }, [changePassword]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isMobileDevice() || !("ontouchstart" in window)) return;
