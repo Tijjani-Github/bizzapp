@@ -25,6 +25,10 @@ interface StateContextProps {
   setSelectedAccountFilter: React.Dispatch<React.SetStateAction<string>>;
   accountSearchTerm: string;
   setAccountSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  isVerified: boolean;
+  setisVerified: React.Dispatch<React.SetStateAction<boolean>>;
+  changePassword: boolean;
+  setchangePassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const StateContext = createContext({} as StateContextProps);
@@ -45,10 +49,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedAccountFilter, setSelectedAccountFilter] =
     React.useState("all");
   const [accountSearchTerm, setAccountSearchTerm] = React.useState("");
-  const [isVerified, setIsVerifed] = React.useState(false);
+  const [isVerified, setisVerified] = React.useState(false);
+  const [changePassword, setchangePassword] = React.useState(false);
 
   const isAnyModalOpen =
-    OpenCreateAccount || CreateNewCustomer || CreateNewAgent;
+    OpenCreateAccount || CreateNewCustomer || CreateNewAgent || changePassword;
 
   const anyMobileSidebarOpen =
     showMobileMenu || openSidebar || openAdminSidebar || openSupervisorSidebar;
@@ -74,12 +79,14 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, [openSidebar]);
 
   useEffect(() => {
-    const NewAcc = localStorage.getItem("swiped");
+    const NewAcc = localStorage.getItem("Changed");
     if (NewAcc) {
-      setIsVerifed(false);
+      setisVerified(false);
       return;
     }
-    setIsVerifed(true);
+    setisVerified(true);
+    localStorage.setItem("Changed", "true");
+    setchangePassword(true);
   }, [isVerified]);
 
   useEffect(() => {
@@ -125,6 +132,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
         setOpenSidebar(false);
         setCreateNewCustomer(false);
         setCreateNewAgent(false);
+        setchangePassword(false);
         setOpenAdminSidebar(false);
         setOpenSupervisorSidebar(false);
       }
@@ -173,6 +181,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setSelectedAccountFilter,
       accountSearchTerm,
       setAccountSearchTerm,
+      isVerified,
+      setisVerified,
+      changePassword,
+      setchangePassword,
     }),
     [
       showMobileMenu,
@@ -196,6 +208,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setSelectedAccountFilter,
       accountSearchTerm,
       setAccountSearchTerm,
+      isVerified,
+      setisVerified,
+      changePassword,
+      setchangePassword,
     ]
   );
 

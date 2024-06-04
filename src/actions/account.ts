@@ -138,6 +138,31 @@ const acceptComplain = async (compId: string) => {
   }
 };
 
+const ChangePassword = async (values: any) => {
+  const { refreshToken } = await getrefreshtoken();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+  };
+  try {
+    const res = await $Http.post(
+      `/account/auth/change-password`,
+      values,
+      config
+    );
+    return {
+      status: res.status,
+      agent: res.data.agent,
+    };
+  } catch (e: any) {
+    return {
+      message: e?.response?.data.message,
+      status: e?.response?.status,
+    };
+  }
+};
 export {
   getallaccount,
   createnewagent,
@@ -145,4 +170,5 @@ export {
   getAllColab,
   getAllDept,
   acceptComplain,
+  ChangePassword,
 };
